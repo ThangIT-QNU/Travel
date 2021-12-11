@@ -118,15 +118,12 @@
                     <div class="col-md-12">
                         <div class="col-lg-5">
                             <h1 class="page-header" style="color:blue;"><b>Đánh Giá</b>
-                                <a style="width: 110px;" href="http://localhost/Travel/UIAdmin/Account/addAccount.php"
-                                    class="btn btn-success"><i class="fas fa-plus-circle"></i>&ensp;Thêm
-                                </a>
                             </h1>
                         </div>
                         <div class="col-md-7">
                             <form class="col-md-7 form-inline" style="margin-top:42px; float:right">
                                 <input class="form-control mr-sm-2" style="width: 300px;" type="search" name="keySearch"
-                                    placeholder="Nhập tên tài khoản khách hàng để tìm kiếm" aria-label="Search">
+                                    placeholder="Nhập tên tài khoản khách hàng để tìm" required aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                                     name="btnSearch">Search</button>
                             </form>
@@ -169,9 +166,9 @@
                                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                     $pageTT = ($page - 1) * $soDongHT;
                                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                                    $allDong = mysqli_query($conn, "SELECT * FROM danhgia,khachsan WHERE danhgia.idKhachSan = khachsan.idKhachSan")->num_rows;
+                                    $allDong = mysqli_query($conn, "SELECT * FROM danhgia")->num_rows;
                                     $allPage = ceil($allDong / $soDongHT);
-                                    $sql = "SELECT * FROM danhgia,khachsan WHERE danhgia.idKhachSan = khachsan.idKhachSan LIMIT $soDongHT OFFSET $pageTT";
+                                    $sql = "SELECT * FROM danhgia LIMIT $soDongHT OFFSET $pageTT";
                                     $query = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_array($query)) {
                                 ?>
@@ -206,7 +203,7 @@
                                     ?>
                                 </td>
                                 <td class="align-middle"><?= $row['idTour'] ?></td>
-                                <td class="text-center"><?= $row['tenKhachSan'] ?></td>
+                                <td class="text-center"><?= $row['idKhachSan'] ?></td>
                                 <td style="width: 150px;">
                                     <a href="http://localhost/Travel/UIAdmin/Comment/detailComment.php?idDanhGia=<?= $row['idDanhGia'] ?>"
                                         class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>&nbsp;DETAIL</a>

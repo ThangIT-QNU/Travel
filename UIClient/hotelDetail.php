@@ -358,10 +358,6 @@
                             <option value="Danh nghiệp">Danh nghiệp</option>
                         </select>
                     </div>
-                    <div class="col-md-12">
-                        <h5> <b style="font-size:21px;">Hình ảnh: (Nếu có)</b></h5>
-                        <input type="file" name="imgHotel" style="font-size:21px;" class=" form-control">
-                    </div>
                     <div style="height: 30px;" class="col-md-12">
                     </div>
                     <div class="col-md-12">
@@ -384,26 +380,8 @@
                 $txtInformation = $_POST['txtInformation'];
                 $txtRating = $_POST['rating'];
                 $txtDate = $_POST['txtDate'];
-                $imgHotel = $_FILES['imgHotel']['name'];
                 $txtPeople = $_POST['txtPeople'];
                 //
-                if ($imgHotel != ""){
-                    $sql = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, ngayDi, diVoiAi, hinhAnh, trangThai, idKhachSan) 
-                            VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtDate', '$txtPeople','$imgHotel', '0', '$idKhachSan')";
-                    $query = mysqli_query($conn, $sql);
-                    if ($query){
-                                    $path = '../../styles/images/' .$_FILES['imgHotel']['name'];
-                                    $diaChiIMG = $_FILES['imgHotel']['tmp_name'];
-                                    move_uploaded_file($diaChiIMG, $path);
-                            echo    "<script>alert('Chúc mừng bạn đã đánh giá khách sạn thành công!');
-                                        header('Location:http://localhost/Travel/UIClient/hotelDetail.php');
-                                    </script>";
-                    }
-                    else
-                        echo    "<script>
-                                    alert('Đánh giá thất bại!');
-                                </script>";
-                }else {
                     $sqlInsert = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, ngayDi, diVoiAi, trangThai, idKhachSan) 
                             VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtDate', '$txtPeople','0', '$idKhachSan')";
                     $sqlInsert = mysqli_query($conn, $sqlInsert);
@@ -417,7 +395,6 @@
                                 alert('Đánh giá thất bại!');
                             </script>";
                 }
-            }
         ?>
     </div><br><br>
     </div>

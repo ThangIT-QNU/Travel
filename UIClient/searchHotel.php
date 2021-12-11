@@ -182,7 +182,7 @@
                         if (isset($_GET['key']))
                             $keySearch = $_GET['key'];
                             $allDong = mysqli_query($conn, "SELECT * FROM diadiem, khachsan WHERE diadiem.idDiaDiem = khachsan.idDiaDiem AND tenKhachSan LIKE '%$keySearch%' OR tenDiaDiem LIKE '%$keySearch%'")->num_rows;
-                             echo "<div style='margin-top:50px;' class='box offers__box2'> <b style='margin-top:50px; margin:0px 70px; font-size:22px'>Bạn đang tìm thấy <b style='color:red;'>'$allDong'</b> khách sạn với từ khóa <b style='color:red;'>'$keySearch'</b></b> ";
+                             echo "<div style='margin-top:50px;' class='box o ffers__box2'> <b style='margin-top:50px; margin:0px 70px; font-size:22px'>Bạn đang tìm thấy <b style='color:red;'>'$allDong'</b> khách sạn với từ khóa <b style='color:red;'>'$keySearch'</b></b> ";
                         //
                         $soDongHT = 4;
                         $page = isset($_GET['page']) ? $_GET['page'] : 1;

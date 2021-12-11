@@ -357,10 +357,6 @@
                             <option value="Danh nghiệp">Danh nghiệp</option>
                         </select>
                     </div>
-                    <div class="col-md-12">
-                        <h5> <b style="font-size:21px;">Hình ảnh: (Nếu có)</b></h5>
-                        <input style="font-size:21px;" type="file" class="form-control" name="imgTour">
-                    </div>
                     <div style="height: 30px;" class="col-md-12">
                     </div>
                     <div class="col-md-12">
