@@ -95,7 +95,7 @@
                 $query = mysqli_query($conn,$sql) or die('Connect Data Fail!');
                 if($query)
                 {
-                    $sqlUpdate = "UPDATE khachsan SET OTP = '$code' WHERE email = '$email'";
+                    $sqlUpdate = "UPDATE taikhoan SET OTP = '$code' WHERE email = '$email'";
                     mysqli_query($conn, $sqlUpdate);
                     echo '<script>
                             alert("Chúc mừng bạn đã đổi mật khẩu thành công! Vui lòng đăng nhập.");
