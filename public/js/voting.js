@@ -31,11 +31,11 @@ var onload = function () {
     
     $("#vote").html(
         `<ul id="starVote">
-            <li class="starItem checked" value="1" title="Gà quá" >&#9733;</li>
-            <li class="starItem" value="2" title="Gà quá">&#9733;</li>
-            <li class="starItem" value="3" title="Gà quá" >&#9733;</li>
-            <li class="starItem" value="4" title="Gà quá" >&#9733;</li>
-            <li class="starItem" value="5" title="Gà quá" >&#9733;</li>
+            <li class="starItem checked" value="1" title="Kinh khủng" >&#9733;</li>
+            <li class="starItem" value="2" title="Tồi">&#9733;</li>
+            <li class="starItem" value="3" title="Trung bình" >&#9733;</li>
+            <li class="starItem" value="4" title="Rất tốt" >&#9733;</li>
+            <li class="starItem" value="5" title="Tuyệt vời" >&#9733;</li>
     </ul>`
     )
     const $$ = document.querySelectorAll.bind(document)
