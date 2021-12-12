@@ -36,7 +36,7 @@ var onload = function () {
             <li class="starItem" value="3" title="Trung bình" >&#9733;</li>
             <li class="starItem" value="4" title="Rất tốt" >&#9733;</li>
             <li class="starItem" value="5" title="Tuyệt vời" >&#9733;</li>
-    </ul>`
+        </ul>`
     )
     const $$ = document.querySelectorAll.bind(document)
     const inputRating = document.querySelector("input[name='rating']")
