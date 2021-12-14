@@ -1,14 +1,6 @@
 <?php   ob_start(); 
         session_start();
 
-        if ($_SESSION['phanQuyen'] == '2')
-        {
-          echo    "<script>
-                      alert('Bạn không có quyền truy cập!');
-                      window.location.href = 'http://localhost/Travel/UIAdmin/index.php';
-                  </script>";
-        }
-
 ?>
 
 
