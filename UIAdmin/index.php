@@ -8,6 +8,7 @@
                 alert('Vui lòng đăng nhập hệ thống!');location.href = 'http://localhost/Travel/UIClient/login.php';
             </script>";
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -19,13 +19,15 @@
     <title>Home - Travel</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/main_style.css">
     <link rel="stylesheet" type="text/css" href="../styles/css/Animation.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script>
     window.onscroll = function() {
         scrollFunction(),
@@ -154,7 +156,7 @@
                             <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
                         </li>
                     </ul>
-                    <div id="tabs" class="main_search__tabs d-flex">
+                    <div id="tabs" class="main_search__tabs">
                         <div style="margin-top:40px;" id="tabs-2" class="tabs_content animated fadeIn">
                             <form action="" method="get" class="search_content">
                                 <div class="search_content__item">
@@ -164,26 +166,11 @@
                                         class="search_content__input"
                                         placeholder="Nhập vào tên tuor hoặc tên địa điểm tour du lịch bạn muốn tìm kiếm">
                                 </div>
-                                <button name="btnSearch" style="font-family: 'Times New Roman';margin-right:30px;"
+                                <button name="btnSearch" style="font-family: 'Times New Roman'; margin-right: 25px;"
                                     class="button search_content__button">Tìm kiếm
                                     <span></span><span></span><span></span>
                                 </button>
                             </form>
-                            <?php
-                                if (isset($_GET['btnSearch'])) {
-                                    $keySearch = $_GET['keySearch'];
-                                    if (isset($_GET['key']))
-                                        $keySearch = $_GET['key'];
-                                        if ($keySearch == "") {
-                                            echo    "<script> 
-                                                        alert('Vui lòng nhập tên tour or địa điểm tour để tìm kiếm!');location.href = 'http://localhost/Travel/UIClient/tour.php';
-                                                    </script>";
-                                        } 
-                                    else{
-                                        header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
-                                    }
-                                }
-                            ?>
                         </div>
                         <div style="margin-top:0px;" class="tabs_content animated fadeIn">
                             <div style=" margin-top:5px;" class="search_content__item">
@@ -198,7 +185,7 @@
                                             font-weight: 600;
                                             color: #929191;
                                             font-family: 'Times New Roman';
-                                            border: none;-size:18px;">
+                                            border: none;font-size:18px;">
                                             <?php
                                             include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
                                             $sql = "SELECT DISTINCT giaTour FROM tour ";
@@ -225,15 +212,12 @@
             <div class="offers">
                 <div class="box offers__box2">
                     <?php
-                    include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                    $soDongHT = 2;
-                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $pageTT = ($page - 1) * $soDongHT;
-                    $allDong = mysqli_query($conn, "SELECT * FROM tour,diadiem WHERE diadiem.idDiaDiem = tour.idDiaDiem")->num_rows;
-                    $allPage = ceil($allDong / $soDongHT);
-                    $sql = "SELECT * FROM tour,diadiem WHERE diadiem.idDiaDiem = tour.idDiaDiem LIMIT $soDongHT OFFSET $pageTT";
-                    $query = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_array($query)) {
+                        include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                        //
+	                    $txtPrice=$_POST['txtPrice'];
+                        $sql = "SELECT * FROM diadiem,tour WHERE diadiem.idDiaDiem = tour.idDiaDiem AND giaTour='$txtPrice'";
+                        $query = mysqli_query($conn, $sql);
+                        while ($row = $query->fetch_assoc()) {
                     ?>
                     <div class="offers_grid" style="position: relative;">
                         <div class="offers_item2">
@@ -244,7 +228,7 @@
                                     </div>
                                 </a>
                                 <div class="offers_name">
-                                    <a><?= $row['tenDiaDiem'] ?></a>
+                                    <a><?= $row[  'tenDiaDiem'] ?></a>
                                 </div>
                             </div>
                             <div class="offers_content">
@@ -262,47 +246,12 @@
                                     </ul>
                                 </div>
                                 <div class="button book_button"><a
-                                        href="http://localhost/Travel/UIClient/addCart.php?idTour=<?= $row['idTour'] ?>">
-                                        book<span></span><span></span><span></span></a>
+                                        href="#">book<span></span><span></span><span></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php }  ?>
-                    <div style="margin-left:200px; margin-top:  0px;" class="blog_navigation">
-                        <ul>
-                            <li class="blog_dot active">
-                                <a class="page-link" href="http://localhost/Travel/UIClient/tour.php?page=1">Trang
-                                    đầu</a>
-                            </li>
-                            <?php
-                                for ($num = 1; $num <= $allPage; $num++) {
-                                    if ($num != $page) {
-                                        if ($num > $page - 2 && $num < $page + 2) {
-                                ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $num ?>"><?= $num ?>
-                                </a>
-                            </li>
-                            <?php
-                                }
-                            } else {
-                                ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $num ?>"><?= $num ?>
-                                </a>
-                            </li>
-                            <?php }
-                                } ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $allPage ?>">Trang cuối
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
 

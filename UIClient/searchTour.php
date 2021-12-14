@@ -166,32 +166,44 @@
                                         class="search_content__input"
                                         placeholder="Nhập vào tên tuor hoặc tên địa điểm tour du lịch bạn muốn tìm kiếm">
                                 </div>
-                                <div style="margin-left:450px; margin-top:5px; width:150px"
-                                    class="search_content__item">
-                                    <div>Giá tiền:</div>
-                                    <select name="txtPrice" class="search_content__input">
-                                        <?php
-                                            include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                                            $sql = "SELECT DISTINCT giaTour FROM tour ";
-                                            $query = mysqli_query($conn, $sql);
-                                            while ($row = mysqli_fetch_array($query)) {
-                                        ?>
-                                        <option value="<?= $row['giaTour'] ?>">
-                                            <?= number_format($row['giaTour']) ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
                                 <button name="btnSearch" style="font-family: 'Times New Roman'; margin-right: 25px;"
                                     class="button search_content__button">Tìm kiếm
                                     <span></span><span></span><span></span>
                                 </button>
                             </form>
-                            <?php
-                                if (isset($_GET['btnSearch'])) {
-                                    $keySearch = $_GET['keySearch'];
-                                    header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
-                                }
-                            ?>
+                        </div>
+                        <div style="margin-top:0px;" class="tabs_content animated fadeIn">
+                            <div style=" margin-top:5px;" class="search_content__item">
+                                <form action="http://localhost/Travel/UIClient/tourPrice.php" method="post"
+                                    class="search_content">
+                                    <div class="search_content__item" style="margin-left: 50px;">
+
+                                        <select name="txtPrice" style="
+                                            width: 150px;
+                                            height: 46px;
+                                            outline: none;
+                                            font-weight: 600;
+                                            color: #929191;
+                                            font-family: 'Times New Roman';
+                                            border: none;font-size:18px;">
+                                            <?php
+                                            include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                                            $sql = "SELECT DISTINCT giaTour FROM tour ";
+                                            $query = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <option value="<?= $row['giaTour'] ?>">
+                                                <?= number_format($row['giaTour']) ?> VNĐ</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit"
+                                        style="font-family: 'Times New Roman'; margin-left: 100px; margin-top:-36px"
+                                        class="button search_content__button">Lọc
+                                        <span></span><span></span><span></span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,8 +213,18 @@
                 <div class="box offers__box2">
                     <?php
                         include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                        if (isset($_GET['btnSearch'])) {
+                            $keySearch = $_GET['keySearch'];
+                            header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
+                        }
                         if (isset($_GET['key']))
                             $keySearch = $_GET['key'];
+                            if ($keySearch == "") {
+                                echo    "<script> 
+                                            alert('Vui lòng nhập vào tên tuor or tên địa điểm tour để tìm kiếm!');
+                                        </script>";
+                            } 
+                        else { 
                         //
                         $soDongHT = 2;
                         $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -283,6 +305,7 @@
                             </li>
                         </ul>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
 

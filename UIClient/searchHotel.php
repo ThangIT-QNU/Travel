@@ -172,6 +172,38 @@
                             ?>
                         </div>
                     </div>
+                    <div style="margin-top:0px;" class="tabs_content animated fadeIn">
+                        <div style=" margin-top:5px;" class="search_content__item">
+                            <form action="http://localhost/Travel/UIClient/hotelPrice.php" method="post"
+                                class="search_content">
+                                <div class="search_content__item" style="margin-left: 50px;">
+
+                                    <select name="txtPrice" style="
+                                        width: 150px;
+                                        height: 46px;
+                                        border: none;
+                                        font-weight: 600;
+                                        color: #929191;
+                                        font-family: 'Times New Roman';font-size:18px;">
+                                        <?php
+                                        include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                                        $sql = "SELECT DISTINCT giaPhongKS FROM khachsan ";
+                                        $query = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_array($query)) {
+                                    ?>
+                                        <option value="<?= $row['giaPhongKS'] ?>">
+                                            <?= number_format($row['giaPhongKS']) ?> VNĐ</option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <button type="submit"
+                                    style="font-family: 'Times New Roman'; margin-left: 100px; margin-top:-36px"
+                                    class="button search_content__button">Lọc
+                                    <span></span><span></span><span></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 

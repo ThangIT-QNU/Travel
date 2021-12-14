@@ -2,13 +2,6 @@
         session_start();
 
 ?>
-<?php 
-    if(isset($_SESSION['tenTaiKhoan']))
-    {
-        $id = $_SESSION['tenTaiKhoan'];
-        $UserName = $_SESSION['txtTaiKhoan'];
-    }
-?>
 
 
 <!DOCTYPE html>
@@ -109,15 +102,19 @@
                 </div>
             </div>
         </header>
+
         <div class="main">
             <!--slider-->
             <div class="main__slide">
                 <div class="home_slide__item">
-                    <div class="home_slide__background" style="background-image: url(../styles/images/13.jpg)"></div>
+                    <div class="home_slide__background" style="background-image: url(../styles/images/Ks10.jpg"></div>
                     <div class="home_slider__content">
                         <div class="home_slider_content_inner animated bounceInLeft">
                             <h1></h1>
-                            <h1>Tour</h1>
+                            <h1>Khách Sạn</h1>
+                            <div class="button home_slider__button">
+                                <div class="button_bcg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,17 +151,17 @@
                             <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
                         </li>
                     </ul>
-                    <div id="tabs" class="main_search__tabs d-flex">
+                    <div id="tabs" class="main_search__tabs">
                         <div style="margin-top:40px;" id="tabs-2" class="tabs_content animated fadeIn">
                             <form action="" method="get" class="search_content">
                                 <div class="search_content__item">
-                                    <div style=" margin-left:50px; font-size:17px;">Tour</div>
+                                    <div style=" margin-left:50px; font-size:17px;">Địa điểm</div>
                                     <input type="text" name="keySearch"
-                                        style=" font-family: 'Times New Roman'; font-size:18px; margin-left:50px; width: 800px;"
+                                        style=" font-family: 'Times New Roman'; font-size:18px; margin-left:50px; width: 900px;"
                                         class="search_content__input"
-                                        placeholder="Nhập vào tên tuor hoặc tên địa điểm tour du lịch bạn muốn tìm kiếm">
+                                        placeholder="Nhập vào tên địa điểm hoặc tên khách sạn bạn muốn tìm kiếm">
                                 </div>
-                                <button name="btnSearch" style="font-family: 'Times New Roman';margin-right:30px;"
+                                <button name="btnSearch" style="font-family: 'Times New Roman'; margin-right: 25px;"
                                     class="button search_content__button">Tìm kiếm
                                     <span></span><span></span><span></span>
                                 </button>
@@ -172,41 +169,31 @@
                             <?php
                                 if (isset($_GET['btnSearch'])) {
                                     $keySearch = $_GET['keySearch'];
-                                    if (isset($_GET['key']))
-                                        $keySearch = $_GET['key'];
-                                        if ($keySearch == "") {
-                                            echo    "<script> 
-                                                        alert('Vui lòng nhập tên tour or địa điểm tour để tìm kiếm!');location.href = 'http://localhost/Travel/UIClient/tour.php';
-                                                    </script>";
-                                        } 
-                                    else{
-                                        header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
-                                    }
+                                    header("Location:http://localhost/Travel/UIClient/searchHotel.php?key=$keySearch");
                                 }
                             ?>
                         </div>
                         <div style="margin-top:0px;" class="tabs_content animated fadeIn">
                             <div style=" margin-top:5px;" class="search_content__item">
-                                <form action="http://localhost/Travel/UIClient/tourPrice.php" method="post"
+                                <form action="http://localhost/Travel/UIClient/hotelPrice.php" method="post"
                                     class="search_content">
                                     <div class="search_content__item" style="margin-left: 50px;">
 
                                         <select name="txtPrice" style="
                                             width: 150px;
                                             height: 46px;
-                                            outline: none;
+                                            border: none;
                                             font-weight: 600;
                                             color: #929191;
-                                            font-family: 'Times New Roman';
-                                            border: none;-size:18px;">
+                                            font-family: 'Times New Roman';font-size:18px;">
                                             <?php
                                             include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                                            $sql = "SELECT DISTINCT giaTour FROM tour ";
+                                            $sql = "SELECT DISTINCT giaPhongKS FROM khachsan ";
                                             $query = mysqli_query($conn, $sql);
                                             while ($row = mysqli_fetch_array($query)) {
                                         ?>
-                                            <option value="<?= $row['giaTour'] ?>">
-                                                <?= number_format($row['giaTour']) ?> VNĐ</option>
+                                            <option value="<?= $row['giaPhongKS'] ?>">
+                                                <?= number_format($row['giaPhongKS']) ?> VNĐ</option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -226,21 +213,19 @@
                 <div class="box offers__box2">
                     <?php
                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                    $soDongHT = 2;
-                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $pageTT = ($page - 1) * $soDongHT;
-                    $allDong = mysqli_query($conn, "SELECT * FROM tour,diadiem WHERE diadiem.idDiaDiem = tour.idDiaDiem")->num_rows;
-                    $allPage = ceil($allDong / $soDongHT);
-                    $sql = "SELECT * FROM tour,diadiem WHERE diadiem.idDiaDiem = tour.idDiaDiem LIMIT $soDongHT OFFSET $pageTT";
+                    //
+                    $txtPrice=$_POST['txtPrice'];
+                    $sql = "SELECT * FROM diadiem,khachsan WHERE diadiem.idDiaDiem = khachsan.idDiaDiem AND giaPhongKS='$txtPrice'";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($query)) {
                     ?>
                     <div class="offers_grid" style="position: relative;">
                         <div class="offers_item2">
                             <div class="offers_image f_image">
-                                <a href="http://localhost/Travel/UIClient/tourDetail.php?idTour=<?= $row['idTour']?>">
+                                <a
+                                    href="http://localhost/Travel/UIClient/hotelDetail.php?idKhachSan=<?= $row['idKhachSan']?>">
                                     <div class="offers_image_background"
-                                        style="background-image:url(../styles/images/<?= $row['hinhAnhTour'] ?>">
+                                        style="background-image:url(../styles/images/<?= $row['hinhAnhKS'] ?>">
                                     </div>
                                 </a>
                                 <div class="offers_name">
@@ -248,8 +233,8 @@
                                 </div>
                             </div>
                             <div class="offers_content">
-                                <div class="offers_price"><?= number_format($row['giaTour'])?> Đ</div>
-                                <p style="font-size:22px" class="offers_text">Tour <?=$row['tenTour']?></p>
+                                <div class="offers_price"><?= number_format($row['giaPhongKS'])?> Đ</div>
+                                <p style="font-size:22px" class="offers_text">Khách Sạn <?=$row['tenKhachSan']?></p>
                                 <div class="offers_icons">
                                     <ul class="offers_icons_list">
                                         <li class="offers_icons_item"><img src="../styles/images/post.png" alt=""></li>
@@ -262,47 +247,12 @@
                                     </ul>
                                 </div>
                                 <div class="button book_button"><a
-                                        href="http://localhost/Travel/UIClient/addCart.php?idTour=<?= $row['idTour'] ?>">
-                                        book<span></span><span></span><span></span></a>
+                                        href="#">book<span></span><span></span><span></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php }  ?>
-                    <div style="margin-left:200px; margin-top:  0px;" class="blog_navigation">
-                        <ul>
-                            <li class="blog_dot active">
-                                <a class="page-link" href="http://localhost/Travel/UIClient/tour.php?page=1">Trang
-                                    đầu</a>
-                            </li>
-                            <?php
-                                for ($num = 1; $num <= $allPage; $num++) {
-                                    if ($num != $page) {
-                                        if ($num > $page - 2 && $num < $page + 2) {
-                                ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $num ?>"><?= $num ?>
-                                </a>
-                            </li>
-                            <?php
-                                }
-                            } else {
-                                ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $num ?>"><?= $num ?>
-                                </a>
-                            </li>
-                            <?php }
-                                } ?>
-                            <li class="blog_dot active">
-                                <a class="page-link"
-                                    href="http://localhost/Travel/UIClient/tour.php?page=<?= $allPage ?>">Trang cuối
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
