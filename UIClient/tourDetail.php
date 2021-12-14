@@ -208,16 +208,16 @@
                     <div class="blog_post_text">
                         <p><?=$row['thongTinTour']?></p><br>
                         <p> <b style="color:black">Vị trí bảng đồ:</b> </p>
-                        <iframe src="<?php echo $row['banDo'] ?>" width="100%" height="100%" style="border:0;"
+                        <iframe src="<?php echo $row['banDo'] ?>" width="100%" height="350px" style="border:0;"
                             allowfullscreen="" loading="lazy">
                         </iframe>
                     </div>
                 </div>
                 <?php } ?>
             </div>
-            <div style="margin-top:100px; margin-left:340px" class="wrap float-right">
+            <div style="margin-top:0px; margin-left:340px" class="wrap float-right">
                 <div class="row p-t-20">
-                    <div class="col-md-12">
+                    <div class="col-md-12"><br><b>Các bài đánh giá gần đây:</b>
                         <?php
                         include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
                         $soDongHT = 3;
@@ -240,7 +240,8 @@
                                 <b>"<i><?php echo $row['tieuDe']?></i>"</b> -<?php echo $row['noiDung']?><br>
                                 <b>Đi cùng:</b> <?php echo $row['diVoiAi']?> - <?php echo $row['ngayDi']?> <br>
 
-                                <span style="color: #FF5622;"><b><?php echo $row['hoVaTen']?></b></span> - Đánh giá vào:
+                                <span style="color: #FF5622;"><b><?php echo $row['hoVaTen']?></b></span> - Đánh giá
+                                vào:
                                 <?php
                                     $date = date('d/m/Y - H:i:s',strtotime($row['ngayDanhGia']));
                                     echo $date;
@@ -324,7 +325,8 @@
                             type="text" name="txtTitle">
                     </div>
                     <div class="col-md-4">
-                        <h5> <b style="font-size:21px;">Nội dung đánh giá:</b> <span class="text-danger"> *</span></h5>
+                        <h5> <b style="font-size:21px;">Nội dung đánh giá:</b> <span class="text-danger"> *</span>
+                        </h5>
                         <input style="font-size:21px;" placeholder="Vui lòng nội dung đánh giá" required type="text"
                             class="form-control" name="txtInformation">
                     </div>

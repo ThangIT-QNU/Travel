@@ -216,7 +216,7 @@
                 </div>
             </div>
             <?php } ?>
-            <div style="margin-top:-100px; margin-left:350px" class="wrap">
+            <div style="margin-top:0px; margin-left:350px" class="wrap float-right">
                 <div class="row p-t-20">
                     <div class="col-md-12"><br><b>Các bài đánh giá gần đây:</b>
                         <?php

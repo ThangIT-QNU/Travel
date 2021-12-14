@@ -187,8 +187,7 @@
                             <?php
                                 if (isset($_GET['btnSearch'])) {
                                     $keySearch = $_GET['keySearch'];
-                                    $txtPrice = $_GET['txtPrice'];
-                                    header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch&price=$txtPrice");
+                                    header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
                                 }
                             ?>
                         </div>
