@@ -416,7 +416,7 @@
             if ($queryOder){
                 unset($_SESSION['cart']);
                 echo    "<script> 
-                        alert('Chúc mừng Quý khách đã thanh toán thành công! Chúng tôi sẽ chuyển hàng cho bạn trong thời gian sớm nhất.');
+                        alert('Chúc mừng Quý khách đã thanh toán thành công! Chúng tôi sẽ liên hệ cho bạn trong thời gian sớm nhất.');
                         location.href = 'http://localhost/Travel/UIClient/cart.php';
                     </script>";
                 }
