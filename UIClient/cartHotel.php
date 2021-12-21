@@ -419,15 +419,15 @@
         // print_r( $sqlInsert);
         foreach($_SESSION['cartHotel'] as $key => $value)
         {
-            $sqlOder = "INSERT INTO chitietoder(idOder, idKhachSan,hinhAnh, giaTien, soLuong, tongTien) 
-                        VALUES ('$idOder', '$key', '".$value['imgHotel']."', '".$value['costHotel']."', '".$value['countHotel']."', '".$value['costHotel']*$value['countHotel']."' )";
+            $sqlOder = "INSERT INTO chitietoder(idOder, idKhachSan,hinhAnh, giaTien, soLuong, tongTien, ngayNhanPhong, ngayTraPhong) 
+                        VALUES ('$idOder', '$key', '".$value['imgHotel']."', '".$value['costHotel']."', '".$value['countHotel']."', '".$value['costHotel']*$value['countHotel']."', '".$value['dateStart']."', '".$value['dateEnd']."' )";
             $queryOder = mysqli_query($conn,$sqlOder);
             // print_r($sqlOder);
             // die();
             if ($queryOder){
                 unset($_SESSION['cartHotel']);
                 echo    "<script> 
-                        alert('Chúc mừng Quý khách đã thanh toán thành công! Chúng tôi sẽ chuyển hàng cho bạn trong thời gian sớm nhất.');
+                        alert('Chúc mừng Quý khách đã thanh toán thành công! Chúng tôi sẽ liên hệ cho bạn trong thời gian sớm nhất.');
                         location.href = 'http://localhost/Travel/UIClient/cartHotel.php';
                     </script>";
                 }
