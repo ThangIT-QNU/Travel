@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/Animation.css">
     <!-- Bootstrap Core CSS -->
     <link href="public/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -59,7 +59,7 @@
                     <?php
                     if(isset($_SESSION['taiKhoan'])){?>
                     <div class="bar__user-login">
-                        <a href="profile.php" title="Thông Tin">
+                        <a href="editProfile.php" title="Thông Tin">
                             <i class="fa fa-user"></i><?php echo $_SESSION['taiKhoan'] ?></a>
                     </div>
                     <div class="bar__user-regis">
@@ -139,7 +139,14 @@
                             </a>
                         </li>
                         <li class="search_tabs__item">
-                            <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
+                            <a href="http://localhost/Travel/UIClient/cart.php"><i class="fas fa-cart-arrow-down"></i>
+                                <span>Đặt Tour</span>
+                            </a>
+                        </li>
+                        <li class="search_tabs__item">
+                            <a href="http://localhost/Travel/UIClient/cartHotel.php"><i class="fas fa-cart-plus"></i>
+                                <span>Đặt Khách Sạn</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -191,30 +198,13 @@
                             name="txtEmail" type="email">
                     </div>
                     <div class="col-md-6">
-                        <h5> <b style="font-size:21px;"> Quyền: </b> <span class="text-danger"> *</span></h5>
-                        <input type="text" style="font-size:21px;" disabled value="
-                                                        <?php
-                                                            if ($row['phanQuyen'] == 1)
-                                                                echo "Khách hàng";
-                                                            else
-                                                                echo "Admin";
-                                                        ?>" class="form-control">
-                        </input>
-                    </div>
-                    <div class="col-md-6">
                         <h5> <b style="font-size:21px;"> Ngày đăng nhập: </b> <span class="text-danger">
                                 *</span></h5>
-                        <input type="text" style="font-size:21px;" disabled value="<?php echo $row['ngayDangNhap'] ?>"
-                            class="form-control">
-
-                        </input>
-                    </div>
-                    <div class="col-md-6">
-                        <h5> <b style="font-size:21px;"> Mã xác nhận: </b> <span class="text-danger"> *</span>
-                        </h5>
-                        <input type="text" style="font-size:21px;" disabled value="<?php echo $row['OTP'] ?>"
-                            class="form-control">
-
+                        <input type="text" style="font-size:21px;" disabled value="
+                                    <?php
+                                        $date = date('H:i:s - d-m-Y',strtotime($row['ngayDangNhap']));
+                                        echo $date;
+                                    ?>" class="form-control">
                         </input>
                     </div>
                     <div style="height: 20px;" class="col-md-12">
@@ -263,7 +253,7 @@
                     <div class="logo">
                         <a style="font-family: 'Times New Roman', Times, serif;"
                             href="http://localhost/Travel/index.php">
-                            <img src="styles/images/logo.png" alt="">VietTravel
+                            <img src="../styles/images/logo.png" alt="">VietTravel
                         </a>
                     </div>
                 </div>
@@ -281,21 +271,21 @@
             <div class="footer__blog">
                 <div class="footer_title">bản tin</div>
                 <div class="footer_blog__item">
-                    <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                    <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                     <div class="footer_blog__content">
                         <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                         <div class="footer_blog__date">30/04/2021</div>
                     </div>
                 </div>
                 <div class="footer_blog__item">
-                    <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                    <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                     <div class="footer_blog__content">
                         <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                         <div class="footer_blog__date">30/04/2019</div>
                     </div>
                 </div>
                 <div class="footer_blog__item">
-                    <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                    <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                     <div class="footer_blog__content">
                         <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                         <div class="footer_blog__date">30/04/2019</div>

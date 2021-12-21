@@ -178,7 +178,14 @@
                             </a>
                         </li>
                         <li class="search_tabs__item">
-                            <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
+                            <a href="http://localhost/Travel/UIClient/cart.php"><i class="fas fa-cart-arrow-down"></i>
+                                <span>Đặt Tour</span>
+                            </a>
+                        </li>
+                        <li class="search_tabs__item">
+                            <a href="http://localhost/Travel/UIClient/cartHotel.php"><i class="fas fa-cart-plus"></i>
+                                <span>Đặt Khách Sạn</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

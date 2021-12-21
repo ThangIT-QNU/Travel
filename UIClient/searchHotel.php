@@ -66,7 +66,7 @@
                     <?php
                     if(isset($_SESSION['taiKhoan'])){?>
                     <div class="bar__user-login">
-                        <a href="profile.php" title="Thông Tin">
+                        <a href="editProfile.php" title="Thông Tin">
                             <i class="fa fa-user"></i><?php echo $_SESSION['taiKhoan'] ?></a>
                     </div>
                     <div class="bar__user-regis">
@@ -146,18 +146,25 @@
                             </a>
                         </li>
                         <li class="search_tabs__item">
-                            <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
+                            <a href="http://localhost/Travel/UIClient/cart.php"><i class="fas fa-cart-arrow-down"></i>
+                                <span>Đặt Tour</span>
+                            </a>
+                        </li>
+                        <li class="search_tabs__item">
+                            <a href="http://localhost/Travel/UIClient/cartHotel.php"><i class="fas fa-cart-plus"></i>
+                                <span>Đặt Khách Sạn</span>
+                            </a>
                         </li>
                     </ul>
                     <div id="tabs" class="main_search__tabs">
                         <div style="margin-top:40px;" id="tabs-2" class="tabs_content animated fadeIn">
                             <form action="" method="get" class="search_content">
                                 <div class="search_content__item">
-                                    <div style=" margin-left:50px; font-size:17px;">Địa điểm</div>
+                                    <div style=" margin-left:50px; font-size:17px;">Khách Sạn</div>
                                     <input type="text" name="keySearch"
                                         style=" font-family: 'Times New Roman'; font-size:18px; margin-left:50px; width: 900px;"
                                         class="search_content__input"
-                                        placeholder="Nhập vào tên địa điểm hoặc tên khách sạn bạn muốn tìm kiếm">
+                                        placeholder="Nhập vào tên khách Sạn hoặc tên địa điểm khách sạn mà bạn muốn tìm kiếm">
                                 </div>
                                 <button name="btnSearch" style="font-family: 'Times New Roman'; margin-right: 25px;"
                                     class="button search_content__button">Tìm kiếm
@@ -229,7 +236,7 @@
                     <div class="offers_item2">
                         <div class="offers_image f_image">
                             <a
-                                href="http://localhost/Travel/UIClient/hotelDetail.php??idKhachSan=<?= $row['idKhachSan']?>">
+                                href="http://localhost/Travel/UIClient/hotelDetail.php?idKhachSan=<?= $row['idKhachSan']?>">
                                 <div class="offers_image_background"
                                     style="background-image:url(../styles/images/<?= $row['hinhAnhKS'] ?>">
                                 </div>

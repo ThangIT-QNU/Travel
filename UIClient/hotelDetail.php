@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/Animation.css">
     <!-- Bootstrap Core CSS -->
     <link href="public/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -155,15 +155,77 @@
                             </a>
                         </li>
                         <li class="search_tabs__item">
-                            <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
+                            <a href="http://localhost/Travel/UIClient/cart.php"><i class="fas fa-cart-arrow-down"></i>
+                                <span>Đặt Tour</span>
+                            </a>
+                        </li>
+                        <li class="search_tabs__item">
+                            <a href="http://localhost/Travel/UIClient/cartHotel.php"><i class="fas fa-cart-plus"></i>
+                                <span>Đặt Khách Sạn</span>
+                            </a>
                         </li>
                     </ul>
+                    <div id="tabs" class="main_search__tabs">
+                        <div style="margin-top:40px;" id="tabs-2" class="tabs_content animated fadeIn">
+                            <form action="" method="get" class="search_content">
+                                <div class="search_content__item">
+                                    <div style=" margin-left:50px; font-size:17px;">Khách Sạn</div>
+                                    <input type="text" name="keySearch"
+                                        style=" font-family: 'Times New Roman'; font-size:18px; margin-left:50px; width: 920px;"
+                                        class="search_content__input"
+                                        placeholder="Nhập vào tên khách Sạn hoặc tên địa điểm khách sạn mà bạn muốn tìm kiếm">
+                                </div>
+                                <button name="btnSearch" style="font-family: 'Times New Roman'; margin-right: 25px;"
+                                    class="button search_content__button">Tìm kiếm
+                                    <span></span><span></span><span></span>
+                                </button>
+                            </form>
+                            <?php
+                                if (isset($_GET['btnSearch'])) {
+                                    $keySearch = $_GET['keySearch'];
+                                    header("Location:http://localhost/Travel/UIClient/searchHotel.php?key=$keySearch");
+                                }
+                            ?>
+                        </div>
+                        <div style="margin-top:0px;" class="tabs_content animated fadeIn">
+                            <div style=" margin-top:5px;" class="search_content__item">
+                                <form action="http://localhost/Travel/UIClient/hotelPrice.php" method="post"
+                                    class="search_content">
+                                    <div class="search_content__item" style="margin-left: 50px;">
+
+                                        <select name="txtPrice" style="
+                                            width: 150px;
+                                            height: 46px;
+                                            border: none;
+                                            font-weight: 600;
+                                            color: #929191;
+                                            font-family: 'Times New Roman';font-size:18px;">
+                                            <?php
+                                            include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                                            $sql = "SELECT DISTINCT giaPhongKS FROM khachsan ";
+                                            $query = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <option value="<?= $row['giaPhongKS'] ?>">
+                                                <?= number_format($row['giaPhongKS']) ?> VNĐ</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit"
+                                        style="font-family: 'Times New Roman'; margin-left: 100px; margin-top:-36px"
+                                        class="button search_content__button">Lọc
+                                        <span></span><span></span><span></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!--        About us-->
 
-            <div style="font-size:20px; margin-top:-50px; " class="about">
+            <div style="font-size:20px; margin-top:-10px; " class="about">
                 <div class="box about__box">
                     <?php
                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
@@ -199,7 +261,8 @@
                         <p class="about__text"></p>
                         <div style="margin-top:-5px;" class="button button_about">
                             <div class="button_bcg"></div>
-                            <a href="http://localhost/Travel/UIClient/addCart.php?idKhachSan=<?= $row['idKhachSan'] ?>">
+                            <a
+                                href="http://localhost/Travel/UIClient/addCartHotel.php?idKhachSan=<?= $row['idKhachSan'] ?>">
                                 BOOK<span></span><span></span><span></span>
                             </a>
                         </div>
@@ -216,6 +279,8 @@
                 </div>
             </div>
             <?php } ?>
+
+            <!-- Comment -->
             <div style="margin-top:0px; margin-left:350px" class="wrap float-right">
                 <div class="row p-t-20">
                     <div class="col-md-12"><br><b>Các bài đánh giá gần đây:</b>
@@ -290,6 +355,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Form Comment -->
     <div style=" margin: -10px 50px 30px 50px;">
         <form id="formSubmit" action="" method="post">
             <div class="pt-5" style="color:blue; height: 100px;">
@@ -308,7 +375,8 @@
                 ?>
                 <div class="row p-t-20">
                     <div class="col-md-4">
-                        <h5> <b style="font-size:21px;">Xếp hạng:</b> <span class="text-danger"> *</span>
+                        <h5> <b style="font-size:21px;">Xếp hạng tổng quát về khách sạn này:</b> <span
+                                class="text-danger"> *</span>
                         </h5>
                         <div class="" id="vote"></div>
                         <input type="hidden" name="rating" value="0">
@@ -321,16 +389,17 @@
                     </div>
                     <div class="col-md-4">
                         <h5> <b style="font-size:21px;">Chủ đề:</b> <span class="text-danger"> *</span></h5>
-                        <input style="font-size:21px;" placeholder="Vui lòng nhập chủ đề" required class="form-control"
+                        <input style="font-size:21px;" maxlength="50"
+                            placeholder="Vui lòng nhập chủ đề không quá 50 kí tự" required class="form-control"
                             type="text" name="txtTitle">
                     </div>
                     <div class="col-md-4">
                         <h5> <b style="font-size:21px;">Nội dung đánh giá:</b> <span class="text-danger"> *</span></h5>
-                        <input style="font-size:21px;" placeholder="Vui lòng nội dung đánh giá" required type="text"
+                        <input style="font-size:21px;" placeholder="Vui lòng nội dung đánh giá " required type="text"
                             class="form-control" name="txtInformation">
                     </div>
                     <div class="col-md-4">
-                        <h5> <b style="font-size:21px;">Bạn đi khi nào?</b> <span class="text-danger"> *</span>
+                        <h5> <b style="font-size:21px;">Bạn đi du lịch khi nào?</b> <span class="text-danger"> *</span>
                         </h5>
                         <select style="font-size:21px; height:41px;" name="txtDate" class="form-control">
                             <option value="Tháng 01 Năm 2021">Tháng 01 Năm 2021</option>
@@ -348,14 +417,23 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <h5> <b style="font-size:21px;">Bạn đi cùng ai:</b><span class="text-danger"> *</span></h5>
+                        <h5> <b style="font-size:21px;">Loại chuyến đi đó là gì?</b><span class="text-danger">
+                                *</span></h5>
                         <select style="font-size:21px; height:41px;" name="txtPeople" class="form-control">
-                            <option value="Một mình">Một mình</option>
-                            <option value="Bạn bè">Bạn bè</option>
-                            <option value="Cặp đôi">Cặp đôi</option>
-                            <option value="Gia đình (trẻ nhỏ)">Gia đình (trẻ nhỏ)</option>
-                            <option value="Gia đình (thanh thiếu niên)">Gia đình (thanh thiếu niên)</option>
                             <option value="Danh nghiệp">Danh nghiệp</option>
+                            <option value="Cặp đôi">Cặp đôi</option>
+                            <option value="Bạn bè">Bạn bè</option>
+                            <option value="Gia đình">Gia đình</option>
+                            <option value="Một mình">Một mình</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <h5> <b style="font-size:21px;">Mức giá của khách sạn này thế nào?</b><span class="text-danger">
+                                *</span></h5>
+                        <select style="font-size:21px; height:41px;" name="txtPrice" class="form-control">
+                            <option value="Bình dân">Bình dân</option>
+                            <option value="Hạng trung">Hạng trung</option>
+                            <option value="Sang trọng">Sang trọng</option>
                         </select>
                     </div>
                     <div style="height: 30px;" class="col-md-12">
@@ -381,9 +459,10 @@
                 $txtRating = $_POST['rating'];
                 $txtDate = $_POST['txtDate'];
                 $txtPeople = $_POST['txtPeople'];
+                $txtPrice = $_POST['txtPrice'];
                 //
-                    $sqlInsert = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, ngayDi, diVoiAi, trangThai, idKhachSan) 
-                            VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtDate', '$txtPeople','0', '$idKhachSan')";
+                    $sqlInsert = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, ngayDi, diVoiAi, mucGiaKS, trangThai, idKhachSan) 
+                            VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtDate', '$txtPeople','$txtPrice','0', '$idKhachSan')";
                     $sqlInsert = mysqli_query($conn, $sqlInsert);
                     if ($sqlInsert){
                         echo    "<script>alert('Chúc mừng bạn đã đánh giá khách sạn thành công!');

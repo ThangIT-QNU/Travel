@@ -130,6 +130,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="main_search">
                 <div style="margin-top:10px" class="main_search__tabs">
                     <ul class="search_tabs__list">
@@ -159,15 +160,88 @@
                             </a>
                         </li>
                         <li class="search_tabs__item">
-                            <a href="#tabs-6"><i class="fas fa-hiking"></i><span>Hoạt động</span></a>
+                            <a href="http://localhost/Travel/UIClient/cart.php"><i class="fas fa-cart-arrow-down"></i>
+                                <span>Đặt Tour</span>
+                            </a>
+                        </li>
+                        <li class="search_tabs__item">
+                            <a href="http://localhost/Travel/UIClient/cartHotel.php"><i class="fas fa-cart-plus"></i>
+                                <span>Đặt Khách Sạn</span>
+                            </a>
                         </li>
                     </ul>
+
+                    <div id="tabs" class="main_search__tabs">
+                        <div style="margin-top:40px;" id="tabs-2" class="tabs_content animated fadeIn">
+                            <form action="" method="get" class="search_content">
+                                <div class="search_content__item">
+                                    <div style=" margin-left:50px; font-size:17px;">Tour</div>
+                                    <input type="text" name="keySearch"
+                                        style=" font-family: 'Times New Roman'; font-size:18px; margin-left:50px; width: 920px;"
+                                        class="search_content__input"
+                                        placeholder="Nhập vào tên tuor hoặc tên địa điểm tour du lịch bạn muốn tìm kiếm">
+                                </div>
+                                <button name="btnSearch" style="font-family: 'Times New Roman';margin-right:30px;"
+                                    class="button search_content__button">Tìm kiếm
+                                    <span></span><span></span><span></span>
+                                </button>
+                            </form>
+                            <?php
+                                if (isset($_GET['btnSearch'])) {
+                                    $keySearch = $_GET['keySearch'];
+                                    if (isset($_GET['key']))
+                                        $keySearch = $_GET['key'];
+                                        if ($keySearch == "") {
+                                            echo    "<script> 
+                                                        alert('Vui lòng nhập tên tour or địa điểm tour để tìm kiếm!');location.href = 'http://localhost/Travel/UIClient/tour.php';
+                                                    </script>";
+                                        } 
+                                    else{
+                                        header("Location:http://localhost/Travel/UIClient/searchTour.php?key=$keySearch");
+                                    }
+                                }
+                            ?>
+                        </div>
+                        <div style="margin-top:0px;" class="tabs_content animated fadeIn">
+                            <div style=" margin-top:5px;" class="search_content__item">
+                                <form action="http://localhost/Travel/UIClient/tourPrice.php" method="post"
+                                    class="search_content">
+                                    <div class="search_content__item" style="margin-left: 50px;">
+
+                                        <select name="txtPrice" style="
+                                            width: 150px;
+                                            height: 46px;
+                                            outline: none;
+                                            font-weight: 600;
+                                            color: #929191;
+                                            font-family: 'Times New Roman';
+                                            border: none;-size:18px;">
+                                            <?php
+                                            include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
+                                            $sql = "SELECT DISTINCT giaTour FROM tour ";
+                                            $query = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <option value="<?= $row['giaTour'] ?>">
+                                                <?= number_format($row['giaTour']) ?> VNĐ</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit"
+                                        style="font-family: 'Times New Roman'; margin-left: 100px; margin-top:-36px"
+                                        class="button search_content__button">Lọc
+                                        <span></span><span></span><span></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!--        About us-->
 
-            <div style="font-size:20px; margin-top:-50px; " class="about">
+            <div style="font-size:20px; margin-top:-10px; " class="about">
                 <div class="box about__box">
                     <?php
                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
