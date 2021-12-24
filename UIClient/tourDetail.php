@@ -19,7 +19,6 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <script type="text/javascript" src="../styles/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-    <script type="text/javascript" src="../public/js/voting.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -309,8 +308,7 @@
                             </div> &ensp;&ensp;
 
                             <div class="col-10">
-                                <button id="rateYoo-<?= $row['idDanhGia']?>" value="<?= $row['sao']?>" disabled="true">
-                                </button>
+                                <div id="resultVote-<?= $row['idDanhGia']?>" value="<?= $row['sao'] ?>"></div>
                                 <b>"<i><?php echo $row['tieuDe']?></i>"</b> -<?php echo $row['noiDung']?><br>
                                 <b>Đi cùng:</b> <?php echo $row['diVoiAi']?> - <?php echo $row['ngayDi']?> <br>
 
@@ -384,8 +382,8 @@
                     <div class="col-md-4">
                         <h5> <b style="font-size:21px;">Xếp hạng:</b> <span class="text-danger"> *</span>
                         </h5>
-                        <div class="" id="vote"></div>
-                        <input type="hidden" name="rating" value="0">
+                        <div id="voteA" href="#vote1"></div>
+                        <input type="hidden" name="rating" id="vote1" value="1">
                     </div>
                     <div class="col-md-4">
                         <h5> <b style="font-size:21px;">E-mail:</b> <span class="text-danger"> *</span>
@@ -558,6 +556,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="../styles/js/main_js.js"></script>
+<script type="text/javascript" src="../public/js/vote.js"></script>
 <script>
 $(function() {
 

@@ -58,6 +58,7 @@
         $('.tooltip').tooltipster();
     });
     </script>
+
     <style>
     </style>
 </head>
@@ -87,7 +88,7 @@
                             <?php echo $_SESSION['taiKhoan'] ?></a>
                     </div>
                     <div class="bar__user-regis">
-                        <a title="Đăng Xuất" href="http://localhost/Travel/UIClient/logout.php"> Đăng Xuất</a>
+                        <a title="Đăng Xuất" href="http://localhost/Travel/logout.php"> Đăng Xuất</a>
                     </div>
                     <?php
                     }else{
@@ -241,7 +242,9 @@
                     <div style="color:rgb(0,0,0);" class="about__content">
                         <b class="about__title">
                             <h3><b><?= $row['tenKhachSan']?></b></h3>
-                        </b> <br>
+                        </b>
+
+
                         <b> Mã khách sạn:&ensp;<?= $row['idKhachSan']?></b> <br></br>
                         <b> Số lượng người ở:&ensp;<?= $row['soLuongNguoi']?> Người</b> <br></br>
                         <b> Ngày nhận phòng:&ensp;
@@ -277,8 +280,8 @@
                         </iframe>
                     </div>
                 </div>
+                <?php } ?>
             </div>
-            <?php } ?>
 
             <!-- Comment -->
             <div style="margin-top:0px; margin-left:350px" class="wrap float-right">
@@ -302,9 +305,8 @@
                             </div> &ensp;&ensp;
 
                             <div class="col-10">
-                                <button id="rateYoo-<?= $row['idDanhGia']?>" value="<?= $row['sao']?>" disabled="true">
-                                </button>
-                                <b>" <i><?php echo $row['tieuDe']?> </i> "</b> -<?php echo $row['noiDung']?><br>
+                                <div id="resultVote-<?= $row['idDanhGia']?>" value="<?= $row['sao'] ?>"></div>
+                                <b>" <i><?php echo $row['tieuDe']?> </i> "</b> - <?php echo $row['noiDung']?><br>
                                 <b>Đi cùng:</b> <?php echo $row['diVoiAi']?> - <?php echo $row['ngayDi']?> <br>
                                 <span style="color: #FF5622;"><b><?php echo $row['hoVaTen']?></b></span> - Đánh giá vào:
                                 <?php
@@ -374,13 +376,37 @@
                     $row = mysqli_fetch_array($query);
                 ?>
                 <div class="row p-t-20">
-                    <div class="col-md-4">
-                        <h5> <b style="font-size:21px;">Xếp hạng tổng quát về khách sạn này:</b> <span
-                                class="text-danger"> *</span>
+                    <div class="col-md-3">
+                        <h5> <b style="font-size:21px;">Xếp hạng tổng thể:</b> <span class="text-danger"> *</span>
                         </h5>
-                        <div class="" id="vote"></div>
-                        <input type="hidden" name="rating" value="0">
+                        <div id="voteA" href="#vote1"></div>
+                        <input type="hidden" name="rating" id="vote1" value="1">
                     </div>
+
+                    <div class="col-md-3">
+                        <h5>
+                            <b style="font-size:21px;">Dịch vụ:</b> <span class="text-danger"> *</span>
+                        </h5>
+                        <div id="voteB" href="#vote2"></div>
+                        <input type="hidden" name="rating1" id="vote2" value="1">
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5>
+                            <b style="font-size:21px;">Giấc ngủ:</b> <span class="text-danger"> *</span>
+                        </h5>
+                        <div id="voteC" href="#vote3"></div>
+                        <input type="hidden" name="rating2" id="vote3" value="1">
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5>
+                            <b style="font-size:21px;">Địa điểm:</b> <span class="text-danger"> *</span>
+                        </h5>
+                        <div id="voteD" href="#vote4"></div>
+                        <input type="hidden" name="rating3" id="vote4" value="1">
+                    </div>
+
                     <div class="col-md-4">
                         <h5> <b style="font-size:21px;">E-mail:</b> <span class="text-danger"> *</span>
                         </h5>
@@ -457,14 +483,44 @@
                 $txtTitle = $_POST['txtTitle'];
                 $txtInformation = $_POST['txtInformation'];
                 $txtRating = $_POST['rating'];
+                $txtService = $_POST['rating1'];
+                $txtSleep = $_POST['rating2'];
+                $txtLocation = $_POST['rating3'];
                 $txtDate = $_POST['txtDate'];
                 $txtPeople = $_POST['txtPeople'];
                 $txtPrice = $_POST['txtPrice'];
+                //Tính số sao trung Bình đánh giá 1ng
+                // $array = array($txtRating , $txtService , $txtSleep , $txtLocation);
+                // $average = ceil(array_sum($array) / count($array));
+
+                //Tính tổng của khách Sạn
+                // $totalHotelStar = mysqli_query($conn,"SELECT SUM(tbSao) FROM danhgia WHERE idKhachSan = '$idKhachSan'");
+                // $row1 = mysqli_fetch_row($totalHotelStar);
+                // $base_pay = $row1[0];
+                // $totalRatingNumber = mysqli_query($conn,"SELECT COUNT(idDanhGia) FROM danhgia WHERE idKhachSan='$idKhachSan'");
+                
+
+                // $totalRatingHotel = mysqli_fetch_row(int($totalHotelStar / $totalRatingNumber));
+                // $base_pay1 = $totalRatingHotel[0] ;
+
                 //
-                    $sqlInsert = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, ngayDi, diVoiAi, mucGiaKS, trangThai, idKhachSan) 
-                            VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtDate', '$txtPeople','$txtPrice','0', '$idKhachSan')";
+                // $sqlAverage = mysqli_query($conn,"SELECT AVG(tbSao) FROM danhgia WHERE idKhachSan = '$idKhachSan'");
+                // $row = mysqli_fetch_row($totalHotelStar);
+                // $base_pay = $row[0];
+                // $A = (int)$sqlAverage;
+                
+
+
+                    $sqlInsert = "INSERT INTO danhgia(hoVaTen, email, tieuDe, noiDung, sao, dichVu, giacNgu, diaDiem, ngayDi, diVoiAi, mucGiaKS, trangThai, idKhachSan) 
+                            VALUES('$txtFullName', '$txtEmail', '$txtTitle', '$txtInformation', '$txtRating', '$txtService', '$txtSleep', '$txtLocation', '$txtDate', '$txtPeople','$txtPrice','0', '$idKhachSan')";
+                    // var_dump($sqlAverage);
+                    // echo "$base_pay";
+                    
+                    // exit();
                     $sqlInsert = mysqli_query($conn, $sqlInsert);
                     if ($sqlInsert){
+                        
+                        
                         echo    "<script>alert('Chúc mừng bạn đã đánh giá khách sạn thành công!');
                                     header('Location:http://localhost/Travel/UIClient/hotelDetail.php');
                                 </script>";
@@ -475,9 +531,10 @@
                             </script>";
                 }
         ?>
+    </div>
+    </div>
+
     </div><br><br>
-    </div>
-    </div>
 
     <footer class="footer">
         <button onclick="topFunction()" id="back_top" title="Go to top"><i class="fas fa-rocket"></i></button>
@@ -560,54 +617,11 @@
             </div>
         </div>
     </footer>
-    </div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="../styles/js/main_js.js"></script>
-<script type="text/javascript" src="../public/js/voting.js"></script>
-<script>
-$(function() {
-
-    // var rated = $(".rated").val()
-    // $("#rateYo").rateYo({
-    //     rating: 3,
-    //     fullStar: true,
-    //     spacing: "20px"
-    // });
-
-    // $("#rateYo").rateYo().on("rateyo.set", function(e, data) {
-    //     var rating = data.rating;
-    //     $(".result").text("Rating: " + rating)
-    //     $("#result").val(rating)
-    // })
-    // //
-
-
-
-    var x = document.querySelectorAll('button[id^="rateYoo"]')
-    x.forEach(item => {
-        item.style.cssText = `
-                background-color: Transparent;
-                background-repeat:no-repeat;
-                border: none;
-                overflow: hidden;
-                `
-
-        var id = "#" + item.id;
-
-        var value = item.getAttribute("value")
-
-
-        $(id).rateYo({
-            rating: value,
-            fullStar: true,
-            spacing: "20px"
-        });
-
-    })
-});
-</script>
+<script type="text/javascript" src="../public/js/vote.js"></script>
 
 <script>
 $(function() {
