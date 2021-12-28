@@ -220,7 +220,7 @@
                 <div class="box offers__box2">
                     <?php
                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                    $soDongHT = 2;
+                    $soDongHT = 5;
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $pageTT = ($page - 1) * $soDongHT;
                     $allDong = mysqli_query($conn, "SELECT * FROM diadiem,khachsan WHERE diadiem.idDiaDiem = khachsan.idDiaDiem")->num_rows;
@@ -329,21 +329,21 @@
                 <div class="footer__blog">
                     <div class="footer_title">bản tin</div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2021</div>
                         </div>
                     </div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2019</div>
                         </div>
                     </div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2019</div>
