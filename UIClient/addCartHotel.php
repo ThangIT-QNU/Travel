@@ -3,7 +3,7 @@
 
     if(!isset($_SESSION['taiKhoan'])) 
       echo "<script> 
-              alert('Vui lòng đăng nhập để mua hàng!');
+              alert('Vui lòng đăng nhập để book khách sạn!');
               location.href = 'http://localhost/Travel/UIClient/login.php';
             </script>";
             
