@@ -92,7 +92,7 @@
         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
         $mail->Username   = 'thangitqnu@gmail.com';                     // SMTP username
-        $mail->Password   = 'thangitqnu@123';                               // SMTP password
+        $mail->Password   = 'thangit@123';                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     
@@ -105,7 +105,7 @@
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'VietTravel';
-        $mail->Body    = 'Mã xác nhận tài khoản Travel của bạn là:<strong>'.$code.'</strong>.
+        $mail->Body    = 'Mã xác nhận tài khoản Travel của bạn là: <strong>'.$code.'</strong> 
         Để đảm bảo an toàn cho tài khoản Travel,Quý khách vui lòng không cung cấp mã này cho người khác.' ;
 
         include "/xampp/htdocs/Travel/DBConnect/DBConnect.php"; 
