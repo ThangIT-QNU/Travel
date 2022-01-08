@@ -220,7 +220,7 @@
                 <div class="box offers__box2">
                     <?php
                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
-                    $soDongHT = 5;
+                    $soDongHT = 8;
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $pageTT = ($page - 1) * $soDongHT;
                     $allDong = mysqli_query($conn, "SELECT * FROM diadiem,khachsan WHERE diadiem.idDiaDiem = khachsan.idDiaDiem")->num_rows;
