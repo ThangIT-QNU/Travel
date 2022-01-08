@@ -229,6 +229,16 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Vị trí bản đồ:
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" placeholder="Nhập vị trí bản đồ" name="txtMap"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Giới thiệu:
@@ -260,9 +270,10 @@
                             $txtPrice = $_POST['txtPrice'];
                             $txtTypeTour = $_POST['txtTypeTour'];
                             $txtLocation = $_POST['txtLocation'];
+                            $txtMap = $_POST['txtMap'];
                             //
-                            $sql = "INSERT INTO tour (tenTour, thongTinTour, hinhAnhTour, ngayKhoiHanhTour, noiKhoiHanhTour, soLuongNguoi, giaTour, idLoaiTour, idDiaDiem) 
-                                    VALUES('$txtName', ' $txtIntroduce', '$txtImage', '$txtDayStart', '$txtLocationStart', '$txtQuantity', '$txtPrice', '$txtTypeTour', '$txtLocation' )";
+                            $sql = "INSERT INTO tour (tenTour, thongTinTour, hinhAnhTour, ngayKhoiHanhTour, noiKhoiHanhTour, soLuongNguoi,giaTour, banDo, idLoaiTour, idDiaDiem) 
+                                    VALUES('$txtName', ' $txtIntroduce', '$txtImage', '$txtDayStart', '$txtLocationStart', '$txtQuantity', '$txtPrice', '$txtMap', '$txtTypeTour', '$txtLocation' )";
                             $query = mysqli_query($conn, $sql);
                             if ($query){
                                 $path = '../../styles/images/' . $_FILES['txtImage']['name'];
