@@ -184,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" name="btnUpdate" value="Thêm" class="form-control btn btn-success">
+                    <input type="submit" name="btnUpdate" value="Cập nhật" class="form-control btn btn-success">
                 </div>
                 </form>
                 <?php

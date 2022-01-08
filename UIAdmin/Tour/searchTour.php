@@ -117,8 +117,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-lg-5">
-                            <h1 class="page-header" style="color:blue;"><b>Tài Khoản</b>
-                                <a style="width: 110px;" href="http://localhost/Travel/UIAdmin/Account/addAccount.php"
+                            <h1 class="page-header" style="color:blue;"><b>Tour</b>
+                                <a style="width: 110px;" href="http://localhost/Travel/UIAdmin/Tour/addTour.php"
                                     class="btn btn-success"><i class="fas fa-plus-circle"></i>&ensp;Thêm
                                 </a>
                             </h1>

@@ -118,7 +118,7 @@
                     <div class="col-md-12">
                         <div class="col-lg-5">
                             <h1 class="page-header" style="color:blue;"><b>Type Tour</b>
-                                <a style="width: 110px;" href="http://localhost/Travel/UIAdmin/Account/addAccount.php"
+                                <a style="width: 110px;" href="http://localhost/Travel/UIAdmin/typeTour/addTypeTour.php"
                                     class="btn btn-success"><i class="fas fa-plus-circle"></i>&ensp;Thêm
                                 </a>
                             </h1>
