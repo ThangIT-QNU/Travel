@@ -125,8 +125,8 @@
                         </div>
                         <div class="col-md-7">
                             <form class="col-md-7 form-inline" style="margin-top:42px; float:right">
-                                <input class="form-control mr-sm-2" style="width: 300px;" type="search" name="keySearch"
-                                    placeholder="Nhập tên tài khoản khách hàng để tìm kiếm" aria-label="Search">
+                                <input class="form-control mr-sm-2" style="width: 290px;" type="search" name="keySearch"
+                                    placeholder="Nhập tên tài khoản để tìm kiếm" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                                     name="btnSearch">Search</button>
                             </form>
@@ -161,7 +161,7 @@
                                 <th class="text-center">Mã xác nhận</th>
                                 <th class="text-center" colspan="2">Action</th>
                                 <?php
-                                    $soDongHT = 6;
+                                    $soDongHT = 5;
                                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                     $pageTT = ($page - 1) * $soDongHT;
                                     include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');

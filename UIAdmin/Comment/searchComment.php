@@ -125,16 +125,15 @@
                         </div>
                         <div class="col-md-7">
                             <form class="col-md-7 form-inline" style="margin-top:42px; float:right">
-                                <input class="form-control mr-sm-2" style="width: 300px;" type="search" name="keySearch"
-                                    placeholder="Nhập tên tài khoản khách hàng để tìm kiếm" required
-                                    aria-label="Search">
+                                <input class="form-control mr-sm-2" style="width: 290px;" type="search" name="keySearch"
+                                    placeholder="Nhập tên khách hàng comment" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                                     name="btnSearch">Search</button>
                             </form>
                             <?php
                             if (isset($_GET['btnSearch'])) {
                                 $keySearch = $_GET['keySearch'];
-                                header("Location:http://localhost/Travel/UIAdmin/Account/searchAccount.php?key=$keySearch");
+                                header("Location:http://localhost/Travel/UIAdmin/Comment/searchComment.php?key=$keySearch");
                             }
                         ?>
                         </div>
@@ -170,7 +169,7 @@
                                     if (isset($_GET['key']))
                                         $keySearch = $_GET['key'];
                                     //
-                                    $soDongHT = 4;
+                                    $soDongHT = 3;
                                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                     $pageTT = ($page - 1) * $soDongHT;
                                     $allDong = mysqli_query($conn, "SELECT * FROM danhgia WHERE hoVaTen LIKE '%$keySearch%'")->num_rows;

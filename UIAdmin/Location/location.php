@@ -125,8 +125,8 @@
                         </div>
                         <div class="col-md-7">
                             <form class="col-md-7 form-inline" style="margin-top:42px; float:right">
-                                <input class="form-control mr-sm-2" style="width: 300px;" type="search" name="keySearch"
-                                    placeholder="Nhập tên tài khoản khách hàng để tìm kiếm" aria-label="Search">
+                                <input class="form-control mr-sm-2" style="width: 290px;" type="search" name="keySearch"
+                                    placeholder="Nhập tên địa để tìm kiếm" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                                     name="btnSearch">Search</button>
                             </form>
