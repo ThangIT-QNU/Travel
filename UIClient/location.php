@@ -79,7 +79,7 @@
                             <?php echo $_SESSION['taiKhoan'] ?></a>
                     </div>
                     <div class="bar__user-regis">
-                        <a title="Đăng Xuất" href="http://localhost/Travel/UIClient/logout.php">
+                        <a title="Đăng Xuất" href="http://localhost/Travel/logout.php">
                             <i class="fas fa-sign-out-alt"></i> Đăng Xuất
                         </a>
                     </div>
