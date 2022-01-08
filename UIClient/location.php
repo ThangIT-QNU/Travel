@@ -205,7 +205,7 @@
                         <div class="blog_post">
                             <div class="blog_post_image">
                                 <img class="zoom_img" src="../styles/images/<?= $row['hinhAnh']?>" alt="">
-                                <div class="blog_post_date"><span>21/04/2019</span></div>
+                                <div class="blog_post_date"><span>20/11/2021</span></div>
                             </div>
                             <div class="blog_post_meta">
                             </div>
@@ -261,7 +261,7 @@
                                     </div>
                                     <div class="latest_post_content">
                                         <div class="latest_post_title"><a href="#">Bãi biển đẹp ở Đà Nẵng</a></div>
-                                        <div class="latest_post_meta">by VietTravel - 21/04/2019</div>
+                                        <div class="latest_post_meta">by VietTravel - 20/11/2021</div>
                                     </div>
                                 </div>
                                 <div class="latest_post">
@@ -269,7 +269,7 @@
                                     </div>
                                     <div class="latest_post_content">
                                         <div class="latest_post_title"><a href="#">Cẩm nang du lịch Quảng Nam</a></div>
-                                        <div class="latest_post_meta">by VietTravel - 21/04/2019</div>
+                                        <div class="latest_post_meta">by VietTravel - 20/11/2021</div>
                                     </div>
                                 </div>
                                 <div class="latest_post">
@@ -277,7 +277,7 @@
                                     </div>
                                     <div class="latest_post_content">
                                         <div class="latest_post_title"><a href="#">Các tour biển đảo Việt Nam</a></div>
-                                        <div class="latest_post_meta">by VietTravel - 21/04/2019</div>
+                                        <div class="latest_post_meta">by VietTravel - 20/11/2021</div>
                                     </div>
                                 </div>
                             </div>
