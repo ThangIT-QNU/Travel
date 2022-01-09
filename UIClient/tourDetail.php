@@ -443,6 +443,11 @@
         <?php
             include ('/xampp/htdocs/Travel/DBConnect/DBConnect.php');
             if (isset($_POST['btnSend'])) {
+                // if(!isset($_SESSION['taiKhoan'])) 
+                //     echo "<script> 
+                //             alert('Vui lòng đăng nhập đánh giá!');
+                //             location.href = 'http://localhost/Travel/UIClient/login.php';
+                //             </script>";
                 if (isset($_SESSION['taiKhoan'])) {
                     $txtFullName =  $_SESSION['taiKhoan'];
                 } else {
