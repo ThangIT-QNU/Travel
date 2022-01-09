@@ -296,21 +296,21 @@
                 <div class="footer__blog">
                     <div class="footer_title">bản tin</div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2021</div>
                         </div>
                     </div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2019</div>
                         </div>
                     </div>
                     <div class="footer_blog__item">
-                        <div class="footer_blog__image"><img src="styles/images/footer_blog_1.jpg" alt=""></div>
+                        <div class="footer_blog__image"><img src="../styles/images/footer_blog_1.jpg" alt=""></div>
                         <div class="footer_blog__content">
                             <div class="footer_blog__title"><a href="#">Địa điểm du lịch Hè 2019</a></div>
                             <div class="footer_blog__date">30/04/2019</div>
