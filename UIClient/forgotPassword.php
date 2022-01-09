@@ -100,7 +100,7 @@
         $mail->setFrom('thangitqnu@gmail.com', 'VietTravel');
         $mail->addAddress($email);     // Add a recipient
 
-        $code = substr(str_shuffle('1234567890QWERTYUIOPASDFGHJKLZXCVBNM'),0,6);
+        $code = substr(str_shuffle('123456789'),0,8);
     
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
@@ -116,7 +116,8 @@
         $verifyQuery = mysqli_query($conn,$sql);
         
 
-        if(mysqli_num_rows($verifyQuery)) {
+        if(mysqli_num_rows($verifyQuery)) 
+        {
             $sqlUpdate = "UPDATE taikhoan SET OTP = '$code' WHERE email = '$email'";
             $codeQuery = mysqli_query($conn ,$sqlUpdate);
             $mail->send();
