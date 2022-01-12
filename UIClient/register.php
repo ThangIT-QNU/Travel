@@ -22,6 +22,15 @@
                                     location.href = 'http://localhost/Travel/UIClient/register.php';
                         </script>";
             }
+
+            $sqlEmail = "SELECT * FROM taikhoan where email='".$email."'"; 
+            $mail = mysqli_query($conn,$sqlEmail); 
+            if(mysqli_num_rows($mail) >=1 ){
+                echo    "<script> 
+                            alert('Tên tài khoản email đã tồn tại, xin vui lòng email khác!');
+                                    location.href = 'http://localhost/Travel/UIClient/register.php';
+                        </script>";
+            }
             else{                                     
                 $sqlInSert = "INSERT INTO taikhoan(tenTaiKhoan, matKhau, hoVaTen, phanQuyen, email) 
                             values('".$userName."','".$passWord."','".$fullName."','1','".$email."')";
